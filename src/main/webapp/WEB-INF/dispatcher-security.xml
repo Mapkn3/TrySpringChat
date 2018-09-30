@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns="http://www.springframework.org/schema/security"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans.xsd
+             http://www.springframework.org/schema/security
+             http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+    <http auto-config="true" use-expressions="true">
+        <form-login login-page="/user/signin"
+                    login-processing-url="/user/login"
+                    default-target-url="/home" />
+        <http-basic />
+        <logout logout-success-url="/home"/>
+        <remember-me key="springChatKey"
+                     token-validity-seconds="2419200" />
+        <intercept-url pattern="/welcome" access="hasAuthority('ADMIN')" />
+        <csrf disabled="true"/>
+    </http>
+    <authentication-manager>
+        <authentication-provider user-service-ref="userService">
+            <password-encoder ref="passwordEncoder" />
+        </authentication-provider>
+    </authentication-manager>
+    <jdbc-user-service id="userService"
+                       data-source-ref="dataSource"
+                       users-by-username-query="SELECT nickname, password, TRUE FROM account WHERE nickname = ?"
+                       authorities-by-username-query="SELECT a.nickname, r.name FROM account a, role r WHERE r.id = a.role_id AND a.nickname = ?" />
+    <global-method-security secured-annotations="enabled"
+                            pre-post-annotations="enabled"
+                            proxy-target-class="true"/>
+    <beans:bean id="passwordEncoder"
+                class="org.springframework.security.crypto.password.NoOpPasswordEncoder" />
+</beans:beans>

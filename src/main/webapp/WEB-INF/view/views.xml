@@ -1,0 +1,27 @@
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="template" template="/WEB-INF/view/main_template.jsp">
+        <put-attribute name="top" value="/WEB-INF/view/tiles/header.jsp" />
+        <put-attribute name="side" value="/WEB-INF/view/tiles/miniAuthForm.jsp" />
+    </definition>
+    <definition name="home" extends="template">
+        <put-attribute name="content" value="/WEB-INF/view/welcome.jsp" />
+    </definition>
+    <definition name="signin" extends="template">
+        <put-attribute name="content" value="/WEB-INF/view/authForm.jsp" />
+    </definition>
+    <definition name="edit" extends="template">
+        <put-attribute name="content" value="/WEB-INF/view/edit.jsp" />
+    </definition>
+    <definition name="detail" extends="template">
+        <put-attribute name="content" value="/WEB-INF/view/detail.jsp" />
+    </definition>
+    <definition name="dialogs" extends="template">
+        <put-attribute name="content" value="/WEB-INF/view/dialogs.jsp" />
+    </definition>
+    <definition name="history" extends="template">
+        <put-attribute name="content" value="/WEB-INF/view/history.jsp" />
+    </definition>
+</tiles-definitions>

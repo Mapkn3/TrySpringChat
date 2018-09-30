@@ -1,0 +1,22 @@
+<div>
+    <fieldset>
+        <table cellspacing="0">
+            <tr>
+                <th><label>Name:</label></th>
+                <td>${account.profile.name}</td>
+            </tr>
+            <tr>
+                <th><label>Surname:</label></th>
+                <td>${account.profile.surname}</td>
+            </tr>
+            <tr>
+                <th><label>Login:</label></th>
+                <td>${account.nickname}</td>
+            </tr>
+            <tr>
+                <th><label>Role:</label></th>
+                <td>${account.role.name}</td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
